@@ -25,3 +25,11 @@ class RandomImage(Resource):
 class RandomImageToken(Resource):
     def get(self):
         return Response(ImageElementGroup.generate_random_token(), content_type="text")
+
+
+class RandomFavicon(Resource):
+    def get(self):
+        return Response(
+            get_binary_from_image(create_image_from_token(size=(16, 16), backround_color=(90,)*3)),
+            content_type="image/jpeg"
+        )
