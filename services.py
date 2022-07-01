@@ -4,6 +4,7 @@ from typing import Iterable, Optional
 
 from random import randint
 from PIL import Image, ImageColor, ImageDraw
+from io import BytesIO
 
 
 hex_color_code = str
@@ -128,3 +129,10 @@ def create_image_from_token(
         )
 
     return image
+
+
+def get_binary_from_image(image: Image) -> str:
+    stream = BytesIO()
+    image.save(stream, format="JPEG")
+
+    return stream.getvalue()
